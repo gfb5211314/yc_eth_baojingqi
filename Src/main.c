@@ -35,7 +35,7 @@
 /* USER CODE BEGIN PTD */
 #define xintiaotim      10000
  extern uint8_t runing_flag;
-  extern uint32_t runing_count;
+ extern uint32_t runing_count;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -44,7 +44,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define ETH_BAOJINGQI_VERSION     "eth_baojingqi_V1.00"
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -108,13 +108,15 @@ int main(void)
 	   printf("一键启动报警\r\n");	
 		 /*关闭代码对设备进行IP配置*/
 //   	 while(eth_init()!=1);
-	 HAL_Delay(1000);
-	  HAL_Delay(1000);
+  	 HAL_Delay(1000);
+	   HAL_Delay(1000);
 		 HAL_Delay(1000);
-		  HAL_Delay(1000);
-			 HAL_Delay(1000);
-			 ETH_DMA_START();
-			 Init_Dev_Param();//设置SN码和退出工厂模式
+		 HAL_Delay(1000);
+		 HAL_Delay(1000);
+		//  test_flash();
+
+	   ETH_DMA_START();
+		 Init_Dev_Param();//设置SN码和退出工厂模式
 ////	  init_dev_eth();   //配置设备IP地址
    while( eth_ring_net_in()!=1)   //接入服务器
 	 {

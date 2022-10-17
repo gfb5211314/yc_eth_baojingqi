@@ -48,7 +48,7 @@ void eth_send_string(uint8_t *p) {
 
 void send_string_to_eth(uint8_t *p,uint16_t plen)
 {
-	 HAL_UART_Transmit(&eth_usart, p,plen, 0xffff);
+	 HAL_UART_Transmit(&eth_usart, p,plen, 0xffffffff);
 	
 }
 //只可以用于AT命令发送，字符为0，没有问题! 数据里面有零都不行
@@ -326,34 +326,41 @@ void process_usart_data()
 	
 	if(ether_st.RX_flag==1)
 	{
-		printf("123");
-		if(strncmp((char *)ether_st.RX_pData, "sn:",3)==0)
+		 if(ether_st.RX_Size>100)
+		 {
+			 ether_st.RX_flag=0;
+			 ether_st.RX_Size=0;
+		 }
+		//send_string_to_eth(ether_st.RX_pData,ether_st.RX_Size);
+		if(strncmp((char *)ether_st.RX_pData,"sn:",3)==0)
 		{
+			
 			
 			for(uint16_t i=0;i<12;i++)
 			{
-			  printf("sn=%c",ether_st.RX_pData[i+3]) ; 
+			  //printf("sn=%c",ether_st.RX_pData[i+3]) ; 
 				sn_code[i]=ether_st.RX_pData[i+3];
 			}		
         
-    	STMFLASH_Write(SN_ADDR_FLASH,(uint32_t *) sn_code, 3 );
+    	 STMFLASH_Write(SN_ADDR_FLASH,   (uint32_t *)sn_code,3 );
 	     Flash_Read_Word( SN_ADDR_FLASH, (uint32_t *)sn_code,3 ) ;
 			
-			for(uint16_t i=0;i<12;i++)
-			{
-			  printf("sn=%c",sn_code[i]) ; 
-			
-			}	
-			send_string_to_eth(ether_st.RX_pData,ether_st.RX_Size);
+//			for(uint16_t i=0;i<12;i++)
+//			{
+//			  printf("sn=%c",sn_code[i]) ; 
+//			
+//			}	
+			send_string_to_eth(sn_code,12);
 		}
-			else	if(strncmp((char *)ether_st.RX_pData, "exit factory",8)==0)
+			else	if(strncmp((char *)ether_st.RX_pData, "exit factory",4)==0)
 		{
 			
            factory=1;			
-			STMFLASH_Write(FACTORY_ADDR_FLASH,(uint32_t *) factory, 1 );
+			STMFLASH_Write(FACTORY_ADDR_FLASH,(uint32_t *) &factory, 1 );
   
 		
 			send_string_to_eth(ether_st.RX_pData,ether_st.RX_Size);
+	
 		}
 		ether_st.RX_flag=0;
 	  ether_st.RX_Size=0;

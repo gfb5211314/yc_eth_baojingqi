@@ -5,7 +5,7 @@
 #include "main.h"
 
 
-#define  data_len 800
+#define  data_len 500
 
 typedef struct
 {

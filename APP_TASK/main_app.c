@@ -158,29 +158,11 @@ uint8_t  eth_ring_net_in()
 						 }  
                if(ether_st.RX_flag==1)
 							 {
-//								  send_string_to_eth(ether_st.RX_pData,ether_st.RX_Size);
-//								 printf("rev: fenpeidizhi");
-								 //寻包方式
-//								for(uint16_t i=0;i<ether_st.RX_Size;i++)
-//								 {
-//									    if((ether_st.RX_pData[i]==0xff)&&(ether_st.RX_pData[i+1]==0xfe))
-//											{
-//												    
-//													  for(uint16_t j=0;j<ether_st.RX_Size-8;j++)
-//									       {
-//										
-//										         ether_st.RX_pData[i]=ether_st.RX_pData[i+j];
-//											  
-//											 printf("j=ether_st.RX_pData[%d]=%02x.",j,	ether_st.RX_pData[j]);
-//													
-//									       }
-//											}
-//									 
-//								 }
-								 	 	for(uint16_t i=0;i<ether_st.RX_Size-8;i++)
+
+								 	 	for(uint16_t i=0;i<ether_st.RX_Size-20;i++)
 									{
 										
-										ether_st.RX_pData[i]=ether_st.RX_pData[i+8];
+										ether_st.RX_pData[i]=ether_st.RX_pData[i+20];
 											 printf("ether_st.RX_pData[%d]=%02x.",i,	ether_st.RX_pData[i]);
 										
 									}
@@ -228,10 +210,10 @@ uint8_t  eth_ring_net_in()
                if(ether_st.RX_flag==1)
 							 {
 								  
-								 	 	for(uint8_t i=0;i<ether_st.RX_Size-8;i++)
+								 	 	for(uint8_t i=0;i<ether_st.RX_Size-20;i++)
 									{
 										
-										ether_st.RX_pData[i]=ether_st.RX_pData[i+8];
+										ether_st.RX_pData[i]=ether_st.RX_pData[i+20];
 									}
 								 //有线报警器的信息
 								     if(ether_st.RX_pData[4]==device_type)
@@ -276,19 +258,20 @@ uint8_t  eth_ring_net_in()
                if(ether_st.RX_flag==1)
 							 {
 								  
-								 	 	for(uint8_t i=0;i<ether_st.RX_Size-8;i++)
+								 	 	for(uint8_t i=0;i<ether_st.RX_Size-20;i++)
 									{
 										
-										ether_st.RX_pData[i]=ether_st.RX_pData[i+8];
+										ether_st.RX_pData[i]=ether_st.RX_pData[i+20];
 									}
 								 //有线报警器的信息
 								     if(ether_st.RX_pData[4]==device_type)
 									   {
 										     switch(ether_st.RX_pData[5])
 												 {												
-													  case Equipment_report_function :  
-                                     
-																	 printf("get dev id\r\n");
+													  case Equipment_report_function :   
+                                     //版本号
+															
+														send_string_to_eth((uint8_t*)ETH_BAOJINGQI_VERSION,sizeof(ETH_BAOJINGQI_VERSION));
 														           
 								                    eth_ack_flag=0;
 //																		net_in =Equipment_report;

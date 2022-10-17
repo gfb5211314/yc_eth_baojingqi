@@ -2,16 +2,6 @@
 #define  __U_FLASH_H_
 #include "main.h"
 
-//#define PAGE_SIZE                128
-//#define PAGE_NUM                 512
-//#define ADDR_FLASH_PAGE_505      0X08000000 + 128*504   //
-//#define ADDR_FLASH_PAGE_506      0X08000000 + 128*505   //
-//#define ADDR_FLASH_PAGE_507      0X08000000 + 128*506   //
-//#define ADDR_FLASH_PAGE_508      0X08000000 + 128*507   //
-//#define ADDR_FLASH_PAGE_509      0X08000000 + 128*508   //
-//#define ADDR_FLASH_PAGE_510      0X08000000 + 128*509   //
-//#define ADDR_FLASH_PAGE_511      0X08000000 + 128*510   //
-//#define ADDR_FLASH_PAGE_512      0X08000000 + 128*511   //最后一页
 
 #define U_FLASH_PAGE_SIZE                                           (2*1024)
 #define U_PAGE_NUM                                             16  //16个扇区
@@ -32,12 +22,7 @@
 #define FLASH_DATA_ADDR_MIN                         FLASH_SECTOR14_START
 #define FLASH_DATA_ADDR_MAX                         FLASH_SECTOR15_END
 // 
-//#define FLASH_DATA_ADDR_BASE                        FLASH_DATA_ADDR_MIN
-//#define CALIBRATION_L_LR_VALUE_ADDR                 FLASH_DATA_ADDR_BASE+0
-//#define CALIBRATION_L_UD_VALUE_ADDR                 FLASH_DATA_ADDR_BASE+12
-//#define CALIBRATION_R_LR_VALUE_ADDR                 FLASH_DATA_ADDR_BASE+24
-//#define CALIBRATION_R_UD_VALUE_ADDR                 FLASH_DATA_ADDR_BASE+36
-//#define FLASH_WAITETIME                             1000
+
 
 
 #define SN_CODE                  "ycsyq0112345"    //
