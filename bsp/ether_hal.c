@@ -117,9 +117,9 @@ uint8_t atk_eth_send_cmd(uint8_t *cmd,uint8_t *ack,uint32_t waittime)
 //开启DMA接收空闲中断
 void  ETH_DMA_START()
 {
+	   __HAL_UART_ENABLE_IT(&eth_usart, UART_IT_IDLE);
    HAL_UART_Receive_DMA(&eth_usart,(uint8_t *)ether_st.RX_pData, 100);  //不能启动打开
-    __HAL_UART_ENABLE_IT(&eth_usart, UART_IT_IDLE);
-//		HAL_UART_Receive_IT(&wifi_usart,ESP8266_temp.RX_pData,1);		// 重新使能串口2接收中断
+
 }
 //开启接收空闲中断
 void  ETH_UsartReceive_IDLE()
