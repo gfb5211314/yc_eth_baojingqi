@@ -216,7 +216,7 @@ uint8_t  eth_ring_net_in()
 										ether_st.RX_pData[i]=ether_st.RX_pData[i+20];
 									}
 								 //有线报警器的信息
-								     if(ether_st.RX_pData[4]==device_type)
+								     if((ether_st.RX_pData[4]==device_type)&&(ether_st.RX_pData[2]==dev_buffer[0])&&(ether_st.RX_pData[3]==dev_buffer[1]))
 									   {
 										     switch(ether_st.RX_pData[5])
 												 {												
@@ -264,7 +264,7 @@ uint8_t  eth_ring_net_in()
 										ether_st.RX_pData[i]=ether_st.RX_pData[i+20];
 									}
 								 //有线报警器的信息
-								     if(ether_st.RX_pData[4]==device_type)
+								     if((ether_st.RX_pData[4]==device_type)&&(ether_st.RX_pData[2]==dev_buffer[0])&&(ether_st.RX_pData[3]==dev_buffer[1]))
 									   {
 										     switch(ether_st.RX_pData[5])
 												 {												
@@ -308,7 +308,7 @@ void run_system_task()
 	 {
 		 case 0 :
 			          printf("一键启动报警\r\n");					
-		                  rang_state=1;
+		                    rang_state=1;
 		                    ring_flag=1;
 		                 break;
 		 case 1 :    
@@ -332,10 +332,10 @@ void run_system_task()
                if(ether_st.RX_flag==1)
 							 {
 								
-								 	 	for(uint8_t i=0;i<ether_st.RX_Size-8;i++)
+								 	 	for(uint8_t i=0;i<ether_st.RX_Size-8-12;i++)
 									{
 										
-										 ether_st.RX_pData[i]=ether_st.RX_pData[i+8];
+										 ether_st.RX_pData[i]=ether_st.RX_pData[i+8+12];
 											 printf("ether_st.RX_pData[%d]=%02x.",i,	ether_st.RX_pData[i]);
 									}
 									
@@ -393,10 +393,10 @@ else
 							 if(ether_st.RX_flag==1)
 							 {
 								
-								 	 	for(uint8_t i=0;i<ether_st.RX_Size-8;i++)
+								 	 	for(uint8_t i=0;i<ether_st.RX_Size-8-12;i++)
 									{
 										
-										 ether_st.RX_pData[i]=ether_st.RX_pData[i+8];
+										 ether_st.RX_pData[i]=ether_st.RX_pData[i+8+12];
 											 printf("ether_st.RX_pData[%d]=%02x.",i,	ether_st.RX_pData[i]);
 									}
 									

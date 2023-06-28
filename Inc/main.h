@@ -37,7 +37,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-#define ETH_BAOJINGQI_VERSION     "eth_baojingqi_V1.01"
+#define ETH_BAOJINGQI_VERSION     "eth_baojingqi_V1.02.1"
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

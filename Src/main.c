@@ -114,7 +114,7 @@ int main(void)
 		 HAL_Delay(1000);
 		 HAL_Delay(1000);
 		//  test_flash();
-
+     Param_Init();
 	   ETH_DMA_START();
 		 Init_Dev_Param();//设置SN码和退出工厂模式
 ////	  init_dev_eth();   //配置设备IP地址
